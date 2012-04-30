@@ -35,7 +35,8 @@ public class SoundCloudTrackListAdapter extends BaseAdapter{
 		public SoundCloudTrackListAdapter(Activity activityContext,
 				ArrayList<Tracks> stationsList) {
 			super();
-//			super(context ,R.layout.fuel_station_list,stationsList);
+//			super(context ,R.layout.
+_station_list,stationsList);
 			this.anActivityContext = activityContext;
 			this.aTrackList = stationsList;
 			this.inflater = (LayoutInflater) activityContext
@@ -80,17 +81,13 @@ public class SoundCloudTrackListAdapter extends BaseAdapter{
 			ViewHolder holder;
 			if (convertView == null) {
 				holder = new ViewHolder();
-				convertView = inflater.inflate(R.layout.foxstationslist, null);
+				convertView = inflater.inflate(R.layout.soundcloudtracklist, null);
 
 				holder.brandIcon = (ImageView) convertView
 						.findViewById(R.id.brandIcon);
 
 				holder.brand = (TextView) convertView.findViewById(R.id.brand);
 
-				holder.fueltype = (TextView) convertView
-						.findViewById(R.id.fueltype);
-
-				holder.price = (TextView) convertView.findViewById(R.id.price);
 
 				holder.city = (TextView) convertView.findViewById(R.id.city);
 				holder.street = (TextView) convertView.findViewById(R.id.street);
@@ -108,9 +105,6 @@ public class SoundCloudTrackListAdapter extends BaseAdapter{
 			holder.brandIcon.setImageResource(track.brandIcon);
 			holder.brand.setText(track.brand);
 			holder.street.setText(track.street);
-//			holder.fueltype.setText(track.getFuelType1());
-//		@TODO select fuelprice and type on preference base overlay menue selection
-			holder.price.setText(String.valueOf(track.fuelprice1));
 			holder.city.setText(track.city);
 			holder.lastCheckin.setText(String.valueOf(track.dateUpdatedStamp));
 		//	holder.distance.setText(track.getDistance());
@@ -121,12 +115,6 @@ public class SoundCloudTrackListAdapter extends BaseAdapter{
 			return convertView;
 		}
 
-		/**
-		 * for further purposes String brand; int brandIcon; String street; String
-		 * city; String phonenumber; double longitude; double latitude; double
-		 * altitude; double accuracy; String locationName; int areaCode; String
-		 * lastCheckin;
-		 **/
 		public static class ViewHolder {
 			TextView trackname;
 			
