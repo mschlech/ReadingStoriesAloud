@@ -83,10 +83,10 @@ _station_list,stationsList);
 				holder = new ViewHolder();
 				convertView = inflater.inflate(R.layout.soundcloudtracklist, null);
 
-				holder.brandIcon = (ImageView) convertView
-						.findViewById(R.id.brandIcon);
+				holder.trackIcon = (ImageView) convertView
+						.findViewById(R.id.trackIcon);
 
-				holder.brand = (TextView) convertView.findViewById(R.id.brand);
+				holder.track = (TextView) convertView.findViewById(R.id.track);
 
 
 				holder.city = (TextView) convertView.findViewById(R.id.city);
@@ -119,7 +119,6 @@ _station_list,stationsList);
 			TextView trackname;
 			
 			TextView duration;
-			TextView fueltype;
 			TextView price;
 			TextView street;
 			TextView city;
