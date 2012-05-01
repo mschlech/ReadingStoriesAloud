@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import com.entscheidungsbaum.soundcloud.trial.service.ReadingStoriesAloudAuthService;
 
@@ -66,14 +67,17 @@ public class ReadingStoriesAloudSplash extends Activity {
      * fool the user starting backround tasks upfront to gain some time to do login , location updates and stuff
      */
     @Override
-    public boolean onTouchEvent(final MotionEvent e) {
-        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+    public boolean onTouchEvent(final MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             /**
              * log in into soundcloud using java wrapper api
              */
             ReadingStoriesAloudAuthService rsaas = new ReadingStoriesAloudAuthService();
+           try{
             rsaas.authenticate();
-
+           } catch (Exception e){
+                Log.e(LOG_TAG, "Exception in authentication occured" +  e.getMessage());
+            }
             startActivity(new Intent(ReadingStoriesAloudSplash.this, SoundCloudMain.class));
         }
         return true;
