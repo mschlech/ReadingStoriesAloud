@@ -9,7 +9,7 @@
     </style>
 
     <style name="splashTitle">
-        <item name="android:textSize">35sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textColor">#b18955</item>
         <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">#000</item>
