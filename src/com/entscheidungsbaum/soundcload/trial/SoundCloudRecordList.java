@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ListView;
+import com.entscheidungsbaum.soundcload.trial.adapters.SoundCloudTrackListAdapter;
+import com.entscheidungsbaum.soundcload.trial.data.Tracks;
 
 /**
  * marcus
@@ -17,7 +20,7 @@ public class SoundCloudRecordList extends Activity implements OnClickListener {
 
 	ListView mySoundCloudTracks;
 	
-	SoundCloudTrackListAdapter = mSoundCloudListAdapter;
+	SoundCloudTrackListAdapter mListAdapter;
 	private ArrayList<Tracks> soundCloudTracks;
 	
 	
@@ -34,7 +37,9 @@ public class SoundCloudRecordList extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.soundcloudtracklist);
+        ListView lv = (ListView) findViewById(R.id.soundcloudlist);
+
 	}
 
 

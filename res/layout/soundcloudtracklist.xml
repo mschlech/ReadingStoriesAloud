@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="320dp"
+              android:layout_height="320dp"
+              android:background="@drawable/android_orange"
+              android:orientation="horizontal" >
+    <LinearLayout
+            android:id="@+id/usericon"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:orientation="vertical" >
+
+
+        <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/soundcloudlogo" />
+
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/trackdetails"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/username"
+                style="@style/TrackListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="username"
+                android:textSize="16dp"
+                android:textStyle="bold">
+        </TextView>
+
+        <TextView
+                android:id="@+id/trackname"
+                style="@style/TrackListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="trackname"
+                android:textSize="12dp"
+                android:textStyle="normal">
+        </TextView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

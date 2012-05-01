@@ -1,140 +1,125 @@
 package com.entscheidungsbaum.soundcload.trial.adapters;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.entscheidungsbaum.soundcload.trial.R;
 import com.entscheidungsbaum.soundcload.trial.data.Tracks;
+
+import java.util.ArrayList;
 
 /**
  * marcus
  * SoundCloudTrial
- *
+ * <p/>
  * 30.04.2012
- **/
-public class SoundCloudTrackListAdapter extends BaseAdapter{
+ */
+public class SoundCloudTrackListAdapter extends BaseAdapter {
+
+    private static final String LOG_TAG = "SoundCloudTrackListAdapter.class";
 
 
-		
-		private static final String LOG_TAG = "SoundCloudTrackListAdapter.class";
+    ArrayList<Tracks> aTrackList;
 
+    public Activity anActivityContext;
+    public LayoutInflater inflater;
 
-		ArrayList<Tracks> aTrackList;
-
-		public Activity anActivityContext;
-		public LayoutInflater inflater;
-
-		public SoundCloudTrackListAdapter(Activity activityContext,
-				ArrayList<Tracks> stationsList) {
-			super();
+    public SoundCloudTrackListAdapter(Activity activityContext,
+                                      ArrayList<Tracks> stationsList) {
+        super();
 //			super(context ,R.layout.
-_station_list,stationsList);
-			this.anActivityContext = activityContext;
-			this.aTrackList = stationsList;
-			this.inflater = (LayoutInflater) activityContext
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
+//_station_list,stationsList);
+        this.anActivityContext = activityContext;
+        this.aTrackList = stationsList;
+        this.inflater = (LayoutInflater) activityContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return aTrackList.size();
-		}
+    public int getCount() {
+        // TODO Auto-generated method stub
+        return aTrackList.size();
+    }
 
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return aTrackList.get(position);
-		}
+    public Object getItem(int position) {
+        // TODO Auto-generated method stub
+        return aTrackList.get(position);
+    }
 
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return position;
-			
-		}
+    public long getItemId(int position) {
+        // TODO Auto-generated method stub
+        return position;
 
-		
-		
-		/* (non-Javadoc)
-		 * @see android.widget.BaseAdapter#notifyDataSetChanged()
-		 */
-		@Override
-		public void notifyDataSetChanged() {
-			// TODO Auto-generated method stub
-			super.notifyDataSetChanged();
-		}
-
-		/**
-		 * @TODO implement the holder referring to the viewId
-		 */
-		/* (non-Javadoc)
-		 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
-		 */
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			ViewHolder holder;
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = inflater.inflate(R.layout.soundcloudtracklist, null);
-
-				holder.trackIcon = (ImageView) convertView
-						.findViewById(R.id.trackIcon);
-
-				holder.track = (TextView) convertView.findViewById(R.id.track);
+    }
 
 
-				holder.city = (TextView) convertView.findViewById(R.id.city);
-				holder.street = (TextView) convertView.findViewById(R.id.street);
-				holder.lastCheckin = (TextView) convertView
-						.findViewById(R.id.lastcheckin);
+    /* (non-Javadoc)
+          * @see android.widget.BaseAdapter#notifyDataSetChanged()
+          */
+    @Override
+    public void notifyDataSetChanged() {
+        // TODO Auto-generated method stub
+        super.notifyDataSetChanged();
+    }
 
-				holder.distance = (TextView) convertView
-						.findViewById(R.id.distance);
-				convertView.setTag(holder);
+    /**
+     * @TODO implement the holder referring to the viewId
+     */
+    /* (non-Javadoc)
+          * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+          */
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // TODO Auto-generated method stub
+        ViewHolder holder;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.soundcloudtracklist, null);
 
-			} else
-				holder = (ViewHolder) convertView.getTag();
+            holder.userIcon = (ImageView) convertView
+                    .findViewById(R.id.userIcon);
+           holder.trackName = (TextView) convertView.findViewById(R.id.trackname);
+            holder.trackDetails = (TextView) convertView.findViewById(R.id.trackdetails);
 
-			Tracks track = (Tracks) aTrackList.get(position);
-			holder.brandIcon.setImageResource(track.brandIcon);
-			holder.brand.setText(track.brand);
-			holder.street.setText(track.street);
-			holder.city.setText(track.city);
-			holder.lastCheckin.setText(String.valueOf(track.dateUpdatedStamp));
-		//	holder.distance.setText(track.getDistance());
-			/*
-			 * more to follow here
-			 */
+//            holder.lastCheckin = (TextView) convertView
+//                    .findViewById(R.id.lastcheckin);
 
-			return convertView;
-		}
+            convertView.setTag(holder);
 
-		public static class ViewHolder {
-			TextView trackname;
-			
-			TextView duration;
-			TextView price;
-			TextView street;
-			TextView city;
-			TextView phonenumber;
-			TextView longitude;
-			TextView lastCheckin;
+        } else
+            holder = (ViewHolder) convertView.getTag();
 
-			/**
-			 * not necessary to be displayed
-			 */
-			TextView latitude;
-			TextView altitude;
-			TextView accuracy;
-			TextView locationName;
-			TextView areaCode;
-		}
+        Tracks track = (Tracks) aTrackList.get(position);
+
+        holder.userIcon.setImageResource(track.userIcon);
+        holder.trackName.setText(track.trackName);
+      //  holder.trackOwner.setText(track.trackOwner);
+
+        holder.lastCheckin.setText(String.valueOf(track.dateUpdatedStamp));
+        //	holder.distance.setText(track.getDistance());
+        /*
+               * more to follow here
+               */
+
+        return convertView;
+    }
+
+    public static class ViewHolder {
+
+        ImageView userIcon;
+        TextView trackName;
+        TextView trackDetails;
+     //   TextView trackOwner;
+
+        TextView duration;
+        TextView set;
+
+        TextView lastCheckin;
+    }
 
 }
 
