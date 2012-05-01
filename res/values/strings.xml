@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="hello">Hello World, SoundCloudMain!</string>
-    <string name="app_name">SoundCloudTrial</string>
+    <string name="hello">Hello Soundcloud</string>
+    <string name="app_name">ReadingStorieAloud</string>
 </resources>
