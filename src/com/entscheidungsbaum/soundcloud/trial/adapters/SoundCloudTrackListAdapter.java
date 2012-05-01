@@ -32,8 +32,6 @@ public class SoundCloudTrackListAdapter extends BaseAdapter {
     public SoundCloudTrackListAdapter(Activity activityContext,
                                       ArrayList<Tracks> stationsList) {
         super();
-//			super(context ,R.layout.
-//_station_list,stationsList);
         this.anActivityContext = activityContext;
         this.aTrackList = stationsList;
         this.inflater = (LayoutInflater) activityContext
