@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".ReadingStoriesAloudSplash"
+            android:name=".SoundCloudMain"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".SoundCloudMain"
-                android:label="@string/app_name"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
-        </activity>
+
         <activity
             android:name=".SoundCloudRecord"
             android:label="@string/app_name"
@@ -33,11 +29,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
         </activity>
-        <activity
-            android:name=".SoundCloudRecordList"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
-        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

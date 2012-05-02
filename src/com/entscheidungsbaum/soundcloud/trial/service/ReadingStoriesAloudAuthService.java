@@ -3,10 +3,16 @@ package com.entscheidungsbaum.soundcloud.trial.service;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.util.Log;
+import com.entscheidungsbaum.soundcloud.trial.data.Tracks;
 import com.soundcloud.api.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * marcus SoundCloudTrial
@@ -28,7 +34,7 @@ public class ReadingStoriesAloudAuthService {
     static String TAG = "";
 
     static JSONObject jsonObject;
-
+    static JSONArray jsonArray;
     private static String id;
     
     AccountManager mAccountManager;
@@ -83,7 +89,7 @@ public class ReadingStoriesAloudAuthService {
             // soundCloudResponse.getStatusLine().getStatusCode()
             jsonObject = Http.getJSON(soundCloudResponse);
              id=jsonObject.get("id").toString();
-            Log.d(LOG_TAG, "got the response of soundcloud " + Http.formatJSON(Http.getString(soundCloudResponse)));
+            Log.d(LOG_TAG, "got the response of soundcloud " +jsonObject);
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "exception  in httpresponse" + e);
@@ -103,8 +109,9 @@ public class ReadingStoriesAloudAuthService {
 
         try {
             HttpResponse soundCloudResponse = apiWrapper.get(requestResource);
-            jsonObject = Http.getJSON(soundCloudResponse);
-            Log.d(LOG_TAG, "got the response of soundcloud " + Http.formatJSON(Http.getString(soundCloudResponse)));
+            final String jsonString = Http.getString(soundCloudResponse);
+            jsonArray = new JSONArray(jsonString);
+           Log.d(LOG_TAG, "got the response of soundcloud " + jsonArray);
         } catch (Exception e) {
             Log.e(LOG_TAG, "exception  in httpresponse" + e);
         }
@@ -117,25 +124,32 @@ public class ReadingStoriesAloudAuthService {
      *
      * @return
      */
-    public static void getMyTracksFromSoundCloud() throws Exception {
+    public static List<Tracks> getMyTracksFromSoundCloud() throws Exception {
         ApiWrapper apiWrapper = getApiWrapper();
 
         final Request requestResource = Request.to("/me/tracks");
         Log.e(LOG_TAG, "json Response" + requestResource.toUrl());
-
+        List<Tracks> trackList = new ArrayList<Tracks>();
         try {
            
             HttpResponse soundCloudResponse = apiWrapper.get(requestResource);
+
             if(soundCloudResponse.getStatusLine().getStatusCode()== HttpStatus.SC_OK) {
-                jsonObject = Http.getJSON(soundCloudResponse);
+                final String jsonString = Http.getString(soundCloudResponse);
+                jsonArray = new JSONArray(jsonString);
+                for(int i = 0 ; i<jsonArray.length() ; i++  ){
+                    Tracks tracks = new Tracks();
+                    tracks.trackName=(String)jsonArray.getJSONObject(i).get("title");
+                    trackList.add(tracks);
+                }
             }  else {
                 Log.e(LOG_TAG, "no valid json Response");
-                jsonObject.optString("Fail","failed to fetch tracklist") ;
             }
            
         } catch (Exception e) {
             Log.e(LOG_TAG, "exception  in http track response " + e);
         }
+          return trackList;
 
     }
 
