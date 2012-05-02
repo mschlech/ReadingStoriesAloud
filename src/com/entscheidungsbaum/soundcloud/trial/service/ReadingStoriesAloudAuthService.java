@@ -96,7 +96,7 @@ public class ReadingStoriesAloudAuthService {
      * @param resource
      * @throws Exception
      */
-    public static void getJsonStrings(String resource, String key) throws Exception {
+    public static void getJsonStrings(String resource) throws Exception {
         ApiWrapper apiWrapper = getApiWrapper();
 
         final Request requestResource = Request.to(resource);
@@ -108,7 +108,7 @@ public class ReadingStoriesAloudAuthService {
         } catch (Exception e) {
             Log.e(LOG_TAG, "exception  in httpresponse" + e);
         }
-        Log.d(LOG_TAG, " KEY -  " + key + " VALUE " + jsonObject.get("title"));
+        //Log.d(LOG_TAG, " KEY -  " + key + " VALUE " + jsonObject.get("title"));
     }
 
 

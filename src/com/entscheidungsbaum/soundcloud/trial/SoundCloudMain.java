@@ -29,10 +29,14 @@ public class SoundCloudMain extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.soundcloudmain);
+
+        /**
+         * from android 4 no networking task in ui thread
+         */
         try {
           //  ReadingStoriesAloudAuthService.getMe();
-          // ReadingStoriesAloudAuthService.getJsonStrings("me/tracks","title");
-           ReadingStoriesAloudAuthService.getMyTracksFromSoundCloud();
+          ReadingStoriesAloudAuthService.getJsonStrings("/me");
+           //ReadingStoriesAloudAuthService.getMyTracksFromSoundCloud();
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception in main activity getMe() " + e);
         }

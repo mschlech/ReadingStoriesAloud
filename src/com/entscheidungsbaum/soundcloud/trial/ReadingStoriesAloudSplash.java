@@ -93,13 +93,7 @@ public class ReadingStoriesAloudSplash extends Activity {
             /**
              * log in into soundcloud using java wrapper api
              */
-            ReadingStoriesAloudAuthService rsaas = new ReadingStoriesAloudAuthService();
-           try{
-            rsaas.authenticate();
-           } catch (Exception e){
-                Log.e(LOG_TAG, "Exception in authentication occured" +  e);
-               e.printStackTrace();
-            }
+
             startActivity(new Intent(ReadingStoriesAloudSplash.this, SoundCloudMain.class));
         }
         return true;
