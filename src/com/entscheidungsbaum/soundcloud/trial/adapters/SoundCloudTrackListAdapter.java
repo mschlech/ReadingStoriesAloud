@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.entscheidungsbaum.soundcloud.trial.R;
 import com.entscheidungsbaum.soundcloud.trial.data.Tracks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * marcus
@@ -19,49 +21,12 @@ import java.util.ArrayList;
  * <p/>
  * 30.04.2012
  */
-public class SoundCloudTrackListAdapter extends BaseAdapter {
+public class SoundCloudTrackListAdapter extends ArrayAdapter<Tracks> {
 
     private static final String LOG_TAG = "SoundCloudTrackListAdapter.class";
 
-
-    ArrayList<Tracks> aTrackList;
-
-    public Activity anActivityContext;
-    public LayoutInflater inflater;
-
-    public SoundCloudTrackListAdapter(Activity activityContext,
-                                      ArrayList<Tracks> stationsList) {
-        super();
-        this.anActivityContext = activityContext;
-        this.aTrackList = stationsList;
-        this.inflater = (LayoutInflater) activityContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return aTrackList.size();
-    }
-
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return aTrackList.get(position);
-    }
-
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return position;
-
-    }
-
-
-    /* (non-Javadoc)
-          * @see android.widget.BaseAdapter#notifyDataSetChanged()
-          */
-    @Override
-    public void notifyDataSetChanged() {
-        // TODO Auto-generated method stub
-        super.notifyDataSetChanged();
+    public SoundCloudTrackListAdapter(Context context,  List<Tracks> aTrackList) {
+        super(context, R.layout.soundcloudtracklist,aTrackList);
     }
 
     /**
@@ -69,13 +34,13 @@ public class SoundCloudTrackListAdapter extends BaseAdapter {
      */
     /* (non-Javadoc)
           * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+
           */
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.soundcloudtracklist, null);
 
             holder.userIcon = (ImageView) convertView
                     .findViewById(R.id.userIcon);
@@ -90,7 +55,7 @@ public class SoundCloudTrackListAdapter extends BaseAdapter {
         } else
             holder = (ViewHolder) convertView.getTag();
 
-        Tracks track = (Tracks) aTrackList.get(position);
+         Tracks track = getItem(position);
 
         holder.userIcon.setImageResource(track.userIcon);
         holder.trackName.setText(track.trackName);
@@ -105,7 +70,11 @@ public class SoundCloudTrackListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public static class ViewHolder {
+
+    /**
+     * avoid invoking findViewById(int)
+     */
+       public static class ViewHolder {
 
         ImageView userIcon;
         TextView trackName;

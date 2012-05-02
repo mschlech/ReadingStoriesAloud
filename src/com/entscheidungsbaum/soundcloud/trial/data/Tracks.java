@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * <p/>
  * 30.04.2012
  */
-public class Tracks implements Parcelable, Comparable<ArrayList<Tracks>> {
+public class Tracks implements Parcelable {
 
     /**
      * "id": 13158665, "created_at": "2011/04/06 15:37:43 +0000",
@@ -59,7 +59,7 @@ public class Tracks implements Parcelable, Comparable<ArrayList<Tracks>> {
     public String dateUpdatedStamp;
     // public Bitmap userIcon;
     public int userIcon;
-
+    public String avatarUrl;
     public Tracks() {
 
     }
@@ -69,6 +69,7 @@ public class Tracks implements Parcelable, Comparable<ArrayList<Tracks>> {
         this.trackName = source.readString();
         this.trackOwner = source.readString();
         this.dateUpdatedStamp = source.readString();
+        this.avatarUrl = source.readString();
     }
 
     public static final Parcelable.Creator<Tracks> CREATOR = new Parcelable.Creator<Tracks>() {
@@ -98,10 +99,5 @@ public class Tracks implements Parcelable, Comparable<ArrayList<Tracks>> {
 
     }
 
-    @Override
-    public int compareTo(ArrayList<Tracks> another) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 
 }

@@ -37,15 +37,14 @@ public class ReadingStoriesAloudSplash extends Activity {
 
         final ApiWrapper mWrapper = new ApiWrapper(CLIENT_ID.trim(), CLIENT_SECRET.trim(), null, null, Env.LIVE);
         Log.d(LOG_TAG, "got a wrapper ");
-        TextView tv = (TextView) findViewById(R.id.token);
-        Token token;
+//        TextView tv = (TextView) findViewById(R.id.token);
+//       Token token;
         try
         {
-         token = mWrapper.login("mschlech".trim(), "linus123".trim(), "live");
-         Log.d(LOG_TAG, "got token  = " + token.toString());
-         tv.setText(token.toString());
+//         token = ReadingStoriesAloudAuthService.authenticate();
+//         Log.d(LOG_TAG, "got token  = " + token.toString());
+//         tv.setText(token.toString());
 
-            
         }
         catch (Exception e) {
             
