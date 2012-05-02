@@ -32,21 +32,20 @@ public class ReadingStoriesAloudAuthService extends Service {
     Account mAccount;
 
 
-    ApiWrapper mWrapper;
     Token token;
 
     public void authenticate() throws Exception {
-        String username = "marcus.schlechter@yahoo.de";
-        String passwd = "linus123";
-        mWrapper = new ApiWrapper(CLIENT_ID, CLIENT_SECRET, null, null, Env.SANDBOX);
-        Log.d(LOG_TAG, "got a wrapper");
+        String username = "mschlech".trim();
+        String passwd = "linus123".trim();
+        final ApiWrapper mWrapper = new ApiWrapper(CLIENT_ID, CLIENT_SECRET, null, null, Env.LIVE);
+        Log.d(LOG_TAG, "got a wrapper ");
         if (mWrapper.debugRequests) {
             Log.d(LOG_TAG, "Debug request");
         }
+        Log.d(LOG_TAG, "get a token " + mWrapper.getToken().valid());
+        mWrapper.login(username, passwd, Env.SANDBOX.toString());
 
-        token = mWrapper.login(username, passwd, Env.SANDBOX.toString());
-
-        Log.d(LOG_TAG, " getToken in authenticate" +token);
+        Log.d(LOG_TAG, " getToken in authenticate");
 
     }
 

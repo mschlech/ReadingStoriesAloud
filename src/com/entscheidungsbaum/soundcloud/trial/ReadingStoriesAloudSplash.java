@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.TextView;
 import com.entscheidungsbaum.soundcloud.trial.service.ReadingStoriesAloudAuthService;
+import com.soundcloud.api.ApiWrapper;
+import com.soundcloud.api.Env;
+import com.soundcloud.api.Token;
 
 /**
  * marcus
@@ -20,6 +24,8 @@ public class ReadingStoriesAloudSplash extends Activity {
     private SharedPreferences prefs;
 
     final String LOG_TAG = "ReadingStoriesAloadSplash";
+    final String CLIENT_ID = "d88a5f695232355d8413e8392a8ecb21";
+    final String CLIENT_SECRET = "c8ee69e777a64346401cbb4c8c4cf1d1";
 
 
     @Override
@@ -28,6 +34,22 @@ public class ReadingStoriesAloudSplash extends Activity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         setContentView(R.layout.soundcloudsplash);
+
+        final ApiWrapper mWrapper = new ApiWrapper(CLIENT_ID.trim(), CLIENT_SECRET.trim(), null, null, Env.LIVE);
+        Log.d(LOG_TAG, "got a wrapper ");
+        TextView tv = (TextView) findViewById(R.id.token);
+        Token token;
+        try
+        {
+         token = mWrapper.login("mschlech".trim(), "linus123".trim(), "live");
+         Log.d(LOG_TAG, "got token  = " + token.toString());
+         tv.setText(token.toString());
+
+            
+        }
+        catch (Exception e) {
+            
+        }
         initPrefs();
     }
 
@@ -76,7 +98,8 @@ public class ReadingStoriesAloudSplash extends Activity {
            try{
             rsaas.authenticate();
            } catch (Exception e){
-                Log.e(LOG_TAG, "Exception in authentication occured" +  e.getMessage());
+                Log.e(LOG_TAG, "Exception in authentication occured" +  e);
+               e.printStackTrace();
             }
             startActivity(new Intent(ReadingStoriesAloudSplash.this, SoundCloudMain.class));
         }
