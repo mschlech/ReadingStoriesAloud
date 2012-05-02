@@ -11,6 +11,11 @@
                android:layout_marginTop="40dp" android:layout_marginLeft="60dp"
                android:layout_below="@id/splashtitle" android:gravity="center"
                android:src="@drawable/soundcloudlogo" />
+    <TextView android:id="@+id/token" android:layout_width="match_parent"
+              android:layout_height="fill_parent"
+              android:layout_marginBottom="10dp" android:layout_marginRight="200dp"
+              android:gravity="right|center" android:text="token" style="@style/whitebold" />
+
     <TextView android:id="@+id/splashtap" android:layout_width="fill_parent"
               android:layout_height="fill_parent" android:layout_toRightOf="@id/splashlogo"
               android:layout_marginBottom="20dp" android:layout_marginRight="10dp"
