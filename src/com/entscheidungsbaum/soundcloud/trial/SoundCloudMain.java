@@ -4,6 +4,8 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.v4.app.*;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,10 @@ public class SoundCloudMain extends FragmentActivity {
        // getSupportFragmentManager().executePendingTransactions();
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),fragmentList );
         pager.setAdapter(pagerAdapter);
+
+        TitlePageIndicator titleIndicator = (TitlePageIndicator)findViewById(R.id.titles);
+        titleIndicator.setViewPager(pager);
+
         /**
          * from android 4 no networking task in ui thread
          */
@@ -78,6 +84,8 @@ public class SoundCloudMain extends FragmentActivity {
 
         List<Fragment> mFragmentList;
 
+        static String LOG_TAG="PageAdapter";
+        
         PagerAdapter(FragmentManager fm, List<Fragment> fragments) {
             super(fm);
 
@@ -86,11 +94,13 @@ public class SoundCloudMain extends FragmentActivity {
 
         @Override
         public Fragment getItem(int i) {
+            Log.i(LOG_TAG, " you hit " + i);
             return mFragmentList.get(i);
         }
 
         @Override
         public int getCount() {
+            Log.i(LOG_TAG, " size "  + mFragmentList.size());
             return mFragmentList.size();
         }
     }

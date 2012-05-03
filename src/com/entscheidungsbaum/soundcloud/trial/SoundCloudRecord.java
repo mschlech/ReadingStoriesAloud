@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -21,7 +22,7 @@ import java.util.List;
  * <p/>
  * 30.04.2012
  */
-public class SoundCloudRecord extends FragmentActivity implements LoaderManager.LoaderCallbacks<List<Tracks>>, View.OnClickListener {
+public class SoundCloudRecord extends FragmentActivity implements  View.OnClickListener {
 
     final String LOG_TAG = "SoundCloudRecord";
     SoundCloudTrackListAdapter sctla;
@@ -34,10 +35,9 @@ public class SoundCloudRecord extends FragmentActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        ListView lv = (ListView) findViewById(R.id.soundcloudlist);
+        setContentView(R.layout.soundcloudmain);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
 
-        // trackList = new SearchTask().doInBackground();
-        // sctla = new SoundCloudTrackListAdapter(this, trackList);
 
         setContentView(R.layout.soundcloudlist);
     }
@@ -45,22 +45,6 @@ public class SoundCloudRecord extends FragmentActivity implements LoaderManager.
     @Override
     public void onClick(View view) {
 
-    }
-
-    @Override
-    public Loader<List<Tracks>> onCreateLoader(int i, Bundle bundle) {
-        return new TrackListLoader(this);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<List<Tracks>> listLoader, List<Tracks> tracks) {
-        ArrayAdapter<Tracks> trackList = new ArrayAdapter<Tracks>(this,R.layout.soundcloudtracklist,tracks);
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<List<Tracks>> listLoader) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 
@@ -78,9 +62,9 @@ public class SoundCloudRecord extends FragmentActivity implements LoaderManager.
 //        }
 //    }
 
-    private static class TrackListLoader extends AsyncTaskLoader<List<Tracks>> {
+    private static class TrackUploaderLoader  extends AsyncTaskLoader<List<Tracks>> {
         
-        public TrackListLoader(final Context context) {
+        public TrackUploaderLoader(final Context context) {
             super(context);
         }
         @Override
